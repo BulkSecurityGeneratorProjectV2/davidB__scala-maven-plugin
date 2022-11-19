@@ -16,6 +16,7 @@ import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLDecoder;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -109,7 +110,7 @@ public class MainHelper {
    * @throws IOException
    */
   static File createArgFile(List<String> args) throws IOException {
-    final File argFile = File.createTempFile(argFilePrefix, argFileSuffix);
+    final File argFile = Files.createTempFile(argFilePrefix, argFileSuffix).toFile();
     // argFile.deleteOnExit();
     try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(argFile)))) {
       for (String arg : args) {
